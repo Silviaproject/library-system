@@ -1,3 +1,11 @@
-<h1>Daftar Anggota</h1>
+@extends('layouts.app')
+@section('title', 'Data Member')
+@section('content')
+<h2>Data Member</h2>
+<ul>
+    @foreach($members as $member)
+        <li>{{ $member }}</li>
+    @endforeach
+</ul>
 
-<p>Sistem Informasi Perpustakaan</p>
+@endsection
