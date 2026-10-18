@@ -32,14 +32,14 @@
             <label>Tahun Terbit:</label><br>
             <input type="number" name="year"
                    value="{{ old('year', $book->year) }}"
-                   min="1000" max="{{ date('Y') }}" required>
+                   min="1900" max="{{ date('Y') }}" required>
         </p>
 
         <p>
             <label>Stok:</label><br>
             <input type="number" name="stock"
                    value="{{ old('stock', $book->stock) }}"
-                   min="0" required>
+                   min="0" max="1000" required>
         </p>
 
         <button type="submit">Simpan Perubahan</button>
