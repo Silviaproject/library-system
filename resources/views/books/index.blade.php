@@ -1,16 +1,22 @@
 
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Buku</title>
+</head>
+<body>
 
-@section('content')
     <h1>Daftar Buku</h1>
 
     @if (session('success'))
         <p>{{ session('success') }}</p>
     @endif
 
-    <p>
-        <a href="{{ route('books.create') }}">+ Tambah Buku</a>
-    </p>
+    <a href="{{ route('books.create') }}">Tambah Buku</a>
+
+    <br><br>
 
     <table border="1" cellpadding="10" cellspacing="0">
         <thead>
@@ -20,6 +26,7 @@
                 <th>Penulis</th>
                 <th>Tahun Terbit</th>
                 <th>Stok</th>
+                <th>Kategori</th>
                 <th>Aksi</th>
             </tr>
         </thead>
@@ -32,26 +39,44 @@
                     <td>{{ $book->author }}</td>
                     <td>{{ $book->year }}</td>
                     <td>{{ $book->stock }}</td>
+
                     <td>
-                        <a href="{{ route('books.show', $book) }}">Detail</a>
+                        {{ $book->category?->name ?? 'Belum ada kategori' }}
+                    </td>
+
+                    <td>
+                        <a href="{{ route('books.show', $book->id) }}">
+                            Detail
+                        </a>
+
                         |
-                        <a href="{{ route('books.edit', $book) }}">Edit</a>
+
+                        <a href="{{ route('books.edit', $book->id) }}">
+                            Edit
+                        </a>
+
                         |
-                        <form action="{{ route('books.destroy', $book) }}"
-                              method="POST"
-                              style="display:inline"
-                              onsubmit="return confirm('Yakin ingin menghapus buku ini?')">
+
+                        <form
+                            action="{{ route('books.destroy', $book->id) }}"
+                            method="POST"
+                            style="display: inline;"
+                            onsubmit="return confirm('Yakin ingin menghapus buku ini?')"
+                        >
                             @csrf
                             @method('DELETE')
+
                             <button type="submit">Hapus</button>
                         </form>
                     </td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="6">Belum ada data buku.</td>
+                    <td colspan="7">Belum ada data buku.</td>
                 </tr>
             @endforelse
         </tbody>
     </table>
-@endsection
+
+</body>
+</html>
