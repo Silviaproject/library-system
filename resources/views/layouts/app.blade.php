@@ -10,6 +10,7 @@
  <header>
  <h1>Library System</h1>
  <nav>
+   <a href="route"
     <a href="/dashboard">Dashboard</a> |
     <a href="/books">Books</a> |
     <a href="/categories">Categories</a> |
@@ -25,4 +26,4 @@
  <p>Library System</p>
  </footer>
 </body>
-</html>
+</html>h

@@ -9,6 +9,13 @@
 <body>
 
     <h1>Daftar Buku</h1>
+    <p>Login sebagai: {{ auth()->user()->name }}</p>
+
+    <form action="{{ route('logout') }}" method="POST">
+        @csrf
+
+        <button type="submit">Logout</button>
+    </form>
 
     @if (session('success'))
         <p>{{ session('success') }}</p>
